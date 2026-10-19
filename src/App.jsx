@@ -76,7 +76,6 @@ function SectionHeading({ eyebrow, title, description }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // This is the ONLY text that will be animated.
   const fullName = "Wenses Sang Network and Cloud Engineer";
   const [typedName, setTypedName] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -129,7 +128,9 @@ function App() {
           type="button"
           className="menu-toggle"
           onClick={() => setMenuOpen((open) => !open)}
-          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            menuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={menuOpen}
           aria-controls="portfolio-navigation"
         >
@@ -163,9 +164,13 @@ function App() {
             <div className="profile-card">
               <div className="profile-image">
                 <img
-                  src="/profile.jpg"
+                  src={`${import.meta.env.BASE_URL}profile.jpg`}
                   alt="Wenses Sang"
                   onError={(event) => {
+                    console.error(
+                      "Profile picture could not load:",
+                      event.currentTarget.src
+                    );
                     event.currentTarget.style.display = "none";
                   }}
                 />
@@ -173,8 +178,6 @@ function App() {
               </div>
 
               <div className="profile-card-info">
-                {/* Removed the PORTFOLIO / 2026 label. */}
-                {/* Only the name and professional title animate here. */}
                 <h3
                   className="typed-name"
                   aria-label={fullName}
@@ -506,11 +509,11 @@ function App() {
 
         <div className="social-links">
           <a
-            href="https://github.com/"
+            href="https://github.com/Wenses-sang"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            title="Replace with your GitHub profile URL"
+            title="GitHub profile"
           >
             <span className="github-text-icon">GH</span>
           </a>
@@ -520,7 +523,7 @@ function App() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            title="Replace with your LinkedIn profile URL"
+            title="LinkedIn profile"
           >
             <span className="linkedin-text-icon">in</span>
           </a>
